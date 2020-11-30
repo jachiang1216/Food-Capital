@@ -1,0 +1,86 @@
+.Register {
+    position: relative;
+    top: 6%;
+    margin-left: auto;
+    margin-right: auto;
+    padding:2 3em;
+}
+
+.Register input {
+    width: 100%;
+    height: 35px;
+    padding-left: 15px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+input[type="checkbox"] {
+    position: relative;
+    padding: 10px;
+    width: 1em;
+    height: 1em;
+    color: black;
+    border: 1px solid gray;
+    border-radius: 4px;
+    appearance: none;
+    outline: 0;
+    cursor: pointer;
+    &::before {
+        position: absolute;
+        content: '';
+        top: 1.5px;
+        width: 8px;
+        left: 7px;
+        height: 14px;
+        border-style: solid;
+        border-color: white;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+        opacity: 0;
+      }
+      &:checked {
+        color: white;
+        border-color: grey;
+        background: grey;
+        &::before {
+          opacity: 1;
+        }
+}
+}
+
+p{
+    color:rgb(100, 88, 88);
+}
+
+input.submit {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 1em;
+    text-align: center;
+    padding: 0px 0px;
+    width: 70%;
+    height: 35px;
+    border: none;
+    border-radius: 20px;
+    margin-top: 15px;
+    
+}
+
+input.submit:active {
+    outline: none;
+    background-color: rgb(226, 221, 202);
+}
+
+
+.acknowledgement{
+    position: relative;
+    float: right;
+    font-size: 14px;
+    padding-top: 2px;
+}
+
+.alert{
+    display: none;
+}
+

@@ -1,0 +1,222 @@
+@import './login.scss';
+
+.Window{
+    background-color: rgba(225, 235, 238, 0.938)
+}
+
+.LoginForm{
+    opacity:1;
+    transition: visibility 0.2s, opacity 0.2s;
+    position: absolute;
+    width: 28em;
+    height: 25em;
+    align-items: center;
+    z-index: 99;
+    top: 25%;
+    left: 750px;
+    padding: 20px;
+    border: 1px;
+    background-color: rgb(232,229,218);
+    font-family: "Avenir";
+    box-shadow: 0px 2px 7px rgba(0,0,0,0.2);
+    opacity: 1;
+    transition: opacity 2s;
+}
+
+.noLoginForm{
+    opacity:0;
+    transition: visibility 0.2s, opacity 0.2s;
+    position: absolute;
+    visibility: hidden;
+    width: 28em;
+    height: 25em;
+    align-items: center;
+    z-index: 99;
+    top: 25%;
+    left: 750px;
+    padding: 20px;
+    border: 1px;
+    background-color: rgb(232,229,218);
+    font-family: "Avenir";
+    box-shadow: 0px 2px 7px rgba(0,0,0,0.2);
+    opacity: 0;
+}
+
+.Image{
+    position: absolute;
+    z-index: 0;
+    top: 0%;
+    left: 0px;
+    
+}
+
+.Title{
+    position: absolute;
+    left: 538px;
+    top:10%;
+    font-size: 45px;
+    font-weight: bold;
+}
+
+.StartGroup{
+    position: absolute;
+    width: 100px;
+    height: 35px;
+    left: 900px;
+    top: 65%;
+	justify-content: center;
+	align-items: center;
+    max-width:100%;
+    background-color: white;
+    outline: none;
+    border-radius: 16px
+
+}
+
+.StartGroup:hover{
+    background-color: rgb(232,229,218);
+}
+
+.StartGroup:focus{
+    outline: none;
+}
+.MainGreeting{
+    opacity:1;
+    transition: opacity 0.2s;
+    
+}
+.noMainGreeting{
+    opacity:0;
+    transition: visibility 0.2s, opacity 0.2s;
+    visibility: hidden;
+}
+
+.intro-greeting{
+    margin-left: 10px;
+    position: absolute;
+    color: black;
+    left: 700px;
+    top: 200px;
+    font-size: 24px;
+}
+
+a:hover {
+     color: black;
+     text-decoration: none;
+}
+
+.typing{
+    position: relative;
+    margin-left: 10px;
+    position: absolute;
+    color: black;
+    left: 800px;
+    top: 300px;
+    font-size: 18px;
+}
+
+.typing::after{
+    position: relative;
+    left: 3px;
+    content: "";
+    width: 1px;
+    height: 85%;
+    border-right: 2px solid black;
+    animation: blink 1s infinite ease;
+}
+
+@keyframes blink{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+
+.Close {
+    position: absolute;
+    right: 0px;
+    top: 1px;
+    width: 1px;
+    height: 1px;
+    margin-right: 20px;
+    margin-top: 2px;
+    opacity: 0.3;
+    border: none;
+}
+.Close:hover {
+    opacity: 1;
+    outline: none;
+}
+.Close:before, .Close:after {
+    position: absolute;
+    left: 10px;
+    content: ' ';
+    height: 33px;
+    width: 2px;
+    background-color: #333;
+}
+.Close:before {
+    transform: rotate(45deg);
+    outline: none;
+}
+.Close:after {
+    transform: rotate(-45deg);
+    outline: none;
+}
+
+.loginBtn {
+    padding-right: 10px;
+    text-decoration: none;
+    outline: 0px;
+    background-color: rgb(232,229,218);
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+    border-bottom:solid 2px black;
+    padding: 0 0 4px;
+    color: black;
+}
+
+.registerBtn {
+    padding-left: 10px;
+    outline: 0px;
+    background-color: rgb(232,229,218);
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+    border-bottom:solid 2px black;
+    color: black;
+    padding: 0 0 4px;
+}
+
+button:focus {
+    outline: 0px;
+}
+
+.noregisterBtn{
+    padding-left: 10px;
+    outline: 0px;
+    background-color: rgb(232,229,218);
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+    color: black;
+}
+
+.nologinBtn{
+    padding-right: 10px;
+    outline: 0px;
+    background-color: rgb(232,229,218);
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+    color: black;
+}
+
+.hi{
+    position: absolute;
+    left: 200px;
+}
