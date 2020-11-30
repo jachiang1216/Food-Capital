@@ -1,0 +1,171 @@
+.profile-display{
+    opacity:1;
+    transition: visibility 0.2s, opacity 0.2s;
+    position: absolute;
+    width: 25em;
+    height: 28em;
+    align-items: center;
+    top: 20%;
+    left: 100px;
+    padding: 20px;
+    border: 1px;
+    border-radius: 100px;
+    font-family: "Avenir";
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    opacity: 1;
+    transition: opacity 2s;
+}
+
+.about-section{
+    opacity:1;
+    transition: visibility 0.2s, opacity 0.2s;
+    position: absolute;
+    width: 35em;
+    height: 12em;
+    align-items: center;
+    top: 20%;
+    right: 130px;
+    padding: 20px;
+    border: 1px;
+    border-radius: 100px;
+    font-family: "Avenir";
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    opacity: 1;
+    transition: opacity 2s;
+}
+
+.stats-section{
+    opacity:1;
+    transition: visibility 0.2s, opacity 0.2s;
+    position: absolute;
+    width: 35em;
+    height: 14em;
+    align-items: center;
+    top: 56%;
+    right: 130px;
+    padding: 20px;
+    border: 1px;
+    border-radius: 100px;
+    font-family: "Avenir";
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    opacity: 1;
+    transition: opacity 2s;
+}
+
+.stats{
+    position: absolute;
+    left: 50px;
+}
+
+
+
+.img{
+    position: absolute;
+    left: 130px;
+    width: 150px;
+    height:130px;
+}
+
+.image-input{
+    position: relative;
+    left:90px;
+    font-size: 14px;
+    top: 20px;
+}
+
+.username-icon{
+    position:absolute;
+    left: 60px;
+    bottom: 250px;
+    width: 25px;
+}
+
+.fullname-icon{
+    position:absolute;
+    left: 60px;
+    bottom: 200px;
+    width: 25px;
+}
+
+.email-icon{
+    position:absolute;
+    left: 58px;
+    width: 28px;
+    bottom: 150px;
+    height: 20px;
+}
+
+.phone-icon{
+    position:absolute;
+    left: 60px;
+    bottom: 100px;
+    width: 25px;
+}
+
+.location-icon{
+    position:absolute;
+    left: 60px;
+    bottom: 50px;
+    width: 25px;
+}
+
+input{
+    border: none;
+    background-color: white;
+}
+
+.name{
+    position: relative;
+    left: 120px;
+    top: 130px;
+}
+
+.fullname{
+    position: relative;
+    left: 120px;
+    top: 155px;
+}
+
+.email{
+    position: relative;
+    left: 120px;
+    top: 180px;
+}
+
+.phone{
+    position: relative;
+    left: 120px;
+    top: 200px;
+}
+
+.location{
+    position: relative;
+    left: 120px;
+    top: 220px;
+}
+
+#file-input{
+   display:none;
+}
+
+.edit-icon{
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    right: 30px;
+    top: 135px;
+}
+
+.edit-icon:hover{
+    border: solid;
+    border-color:rgb(241, 203, 121);
+}
+
+.no-edit-icon{
+    display: none;
+}
+
+.about{
+    position: absolute;
+    left: 50px;
+}
