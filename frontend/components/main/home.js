@@ -41,6 +41,7 @@ export class Home extends Component {
         const { id } = this.state;
         this.getDetails(this.props.id);
     }
+    
     render() {
 
         return (
