@@ -1,0 +1,321 @@
+.profile-display{
+    opacity:1;
+    transition: visibility 0.2s, opacity 0.2s;
+    position: absolute;
+    width: 28em;
+    height: 27em;
+    align-items: center;
+    top: 20%;
+    left: 80px;
+    padding: 10px;
+    border: 1px;
+    border-radius: 100px;
+    font-family: "Avenir";
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    opacity: 1;
+    transition: opacity 2s;
+}
+
+.about-section{
+    opacity:1;
+    transition: visibility 0.2s, opacity 0.2s;
+    position: absolute;
+    width: 35em;
+    height: 11em;
+    align-items: center;
+    top: 20%;
+    right: 130px;
+    padding: 20px;
+    border: 1px;
+    border-radius: 100px;
+    font-family: "Avenir";
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    opacity: 1;
+    transition: opacity 2s;
+}
+
+.stats-section{
+    opacity:1;
+    transition: visibility 0.2s, opacity 0.2s;
+    position: absolute;
+    width: 35em;
+    height: 12em;
+    align-items: center;
+    top: 56%;
+    right: 130px;
+    padding: 20px;
+    border: 1px;
+    border-radius: 100px;
+    font-family: "Avenir";
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    opacity: 1;
+    transition: opacity 2s;
+}
+
+.stats{
+    position: absolute;
+    left: 50px;
+}
+
+
+.img{
+    position: absolute;
+    left: 155px;
+    width: 150px;
+    height:130px;
+}
+
+
+.edit-img{
+    position: absolute;
+    left: 155px;
+    width: 150px;
+    height:130px;
+    border: solid;
+    border-color: lightgrey;
+}
+
+.image-input{
+    position: relative;
+    left:90px;
+    font-size: 14px;
+    top: 20px;
+}
+
+.username-icon{
+    position:absolute;
+    left: 60px;
+    bottom: 250px;
+    width: 25px;
+    top: 175px;
+}
+
+.fullname-icon{
+    position:absolute;
+    left: 60px;
+    bottom: 200px;
+    width: 25px;
+    top: 228px;
+}
+
+.email-icon{
+    position:absolute;
+    left: 58px;
+    width: 28px;
+    bottom: 150px;
+    height: 20px;
+    top: 280px;
+}
+
+.phone-icon{
+    position:absolute;
+    left: 60px;
+    bottom: 100px;
+    width: 25px;
+    top: 325px;
+}
+
+.location-icon{
+    position:absolute;
+    left: 60px;
+    bottom: 50px;
+    width: 25px;
+    top: 375px;
+}
+
+input{
+    border: none;
+    color: black;
+    background-color: white;
+}
+
+
+.name{
+    position: absolute;
+    width: 250px;
+    left: 140px;
+    top: 175px;
+}
+
+
+
+
+.fullname{
+    position: absolute;
+    width: 250px;
+    left: 140px;
+    top: 225px;
+}
+
+.edit-fullname{
+    position: absolute;
+    width: 250px;
+    left: 140px;
+    top: 225px;
+    border: solid;
+    border-color: lightgrey
+}
+
+.email{
+    position: absolute;
+    width: 250px;
+    left: 140px;
+    top: 275px;
+}
+
+.edit-email{
+    position: absolute;
+    width: 250px;
+    left: 140px;
+    top: 275px;
+    border: solid;
+    border-color: lightgrey
+}
+
+.phone{
+    position: absolute;
+    width: 250px;
+    left: 140px;
+    top: 322px;
+}
+
+.edit-phone{
+    position: absolute;
+    width: 250px;
+    left: 140px;
+    top: 322px;
+    border: solid;
+    border-color: lightgrey
+}
+
+.location{
+    position: absolute;
+    width: 250px;
+    left: 140px;
+    top: 375px;
+}
+
+.edit-location{
+    position: absolute;
+    width: 250px;
+    left: 140px;
+    top: 375px;
+    border: solid;
+    border-color: lightgrey
+}
+
+#file-input{
+   display:none;
+}
+
+.edit-icon{
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    right: 30px;
+    top: 135px;
+}
+
+.edit-icon:hover{
+    border: solid;
+    border-color:rgb(241, 203, 121);
+}
+
+.no-edit-icon{
+    display: none;
+}
+
+
+
+.about{
+    position: absolute;
+    left: 50px;
+}
+
+.about-text{
+    position: absolute;
+    left: 45px;
+    top: 50px;
+    width: 470px;
+    height: 105px;
+    border: none;
+}
+
+.edit-about-text{
+    position: absolute;
+    left: 45px;
+    top: 50px;
+    width: 470px;
+    height: 105px;
+    border: solid;
+    border-color: lightgrey
+}
+
+textarea {
+    resize: none;
+    background-color: white;
+ }
+
+
+.profile-submit {
+    position: absolute;
+    font-weight: 600;
+    top: 550px;
+    text-transform: uppercase;
+    font-size: 1em;
+    text-align: center;
+    display: block;
+    margin: auto;
+    width: 13%;
+    height: 35px;
+    border: solid;
+    border-radius: 20px;
+    margin-top: 10px;
+    right: 20px;
+    
+}
+
+.profile-submit:active {
+    outline: none;
+    background-color: rgb(226, 221, 202);
+}
+
+.no-profile-submit{
+    display: none;
+}
+
+.profileClose {
+    position: absolute;
+    right: 25px;
+    top: 133px;
+    width: 1px;
+    height: 1px;
+    margin-right: 20px;
+    margin-top: 2px;
+    opacity: 0.3;
+    border: none;
+}
+.profileClose:hover {
+    opacity: 1;
+    outline: none;
+}
+.profileClose:before, .profileClose:after {
+    position: absolute;
+    left: 10px;
+    content: ' ';
+    height: 33px;
+    width: 2px;
+    background-color: #333;
+}
+.profileClose:before {
+    transform: rotate(45deg);
+    outline: none;
+}
+.profileClose:after {
+    transform: rotate(-45deg);
+    outline: none;
+}
+
+.no-profileClose {
+    display:none;
+}
