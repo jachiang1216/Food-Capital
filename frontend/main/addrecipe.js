@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from 'axios';
+import AddIcon from "./../../../images/Add-Icon.PNG";
 import DefaultPic from "./../../../images/Default-Image.png"
 import "./addrecipe.scss"
 
@@ -20,11 +21,23 @@ export default class AddRecipe extends Component {
             addRecipePicture: DefaultPic,
             addrecipepicdata: "",
 
+            //Ingredient States
+            ingredients: [],
+            ingredient_index: 0,
+
+            steps: [],
+            step_index: 1
 
         }
         this.onSubmit=this.onSubmit.bind(this)
         this.onChangeRecipeName=this.onChangeRecipeName.bind(this)
         this.onChangeRecipeDescription=this.onChangeRecipeDescription.bind(this)
+        this.deleteIngredient=this.deleteIngredient.bind(this)
+        this.onChangeIngredientName=this.onChangeIngredientName.bind(this)
+        this.onChangeIngredientQuantity=this.onChangeIngredientQuantity.bind(this)
+        this.onChangeIngredientMeasurement=this.onChangeIngredientMeasurement.bind(this)
+        this.onChangeIngredientComments=this.onChangeIngredientComments.bind(this)
+        this.onChangeStepComments=this.onChangeStepComments.bind(this)
     }
     
     arrayBufferToBase64(buffer){
@@ -72,7 +85,9 @@ export default class AddRecipe extends Component {
         let recipe = {
             userid: this.props.id,
             recipename: this.state.recipename,
-            recipedescription: this.state.recipedescription
+            recipedescription: this.state.recipedescription,
+            ingredients: this.state.ingredients,
+            steps: this.state.steps
         }
         let id = await axios.post('http://localhost:4000/recipes/add/', recipe)
             .then(res => {
@@ -87,6 +102,175 @@ export default class AddRecipe extends Component {
             userid: this.props.id,
             referrer: "/recipes"
         })
+    }
+
+    onChangeIngredientName(e, index) {
+        
+        var array = this.state.ingredients;
+        /* array = array.filter((j => j[4] == index)) */
+        var temp_array = [];
+        array.map(k => 
+            temp_array.push(k[4])
+        );
+
+        for (var i = 0; i < temp_array.length; i++){
+            
+            if (temp_array[i]===index){
+                array[i][0] = e.target.value
+            } 
+        }
+
+        //array[index][0] = e.target.value
+        this.setState({
+            ingredients: array
+        });
+    }
+
+    onChangeIngredientQuantity(e, index) {
+        
+        var array = this.state.ingredients;
+
+        var temp_array = [];
+        array.map(k => 
+            temp_array.push(k[4])
+        );
+
+        for (var i = 0; i < temp_array.length; i++){
+            
+            if (temp_array[i]===index){
+                array[i][1] = e.target.value
+            } 
+        }
+
+        this.setState({
+            ingredients: array
+        });
+    }
+
+    onChangeIngredientMeasurement(e, index) {
+        
+        var array = this.state.ingredients;
+
+        var temp_array = [];
+        array.map(k => 
+            temp_array.push(k[4])
+        );
+
+        for (var i = 0; i < temp_array.length; i++){
+            
+            if (temp_array[i]===index){
+                array[i][2] = e.target.value
+            } 
+        }
+
+        this.setState({
+            ingredients: array
+        });
+    }
+
+    onChangeIngredientComments(e, index) {
+        
+        var array = this.state.ingredients;
+
+        var temp_array = [];
+        array.map(k => 
+            temp_array.push(k[4])
+        );
+
+        for (var i = 0; i < temp_array.length; i++){
+            
+            if (temp_array[i]===index){
+                array[i][3] = e.target.value
+            } 
+        }
+
+        this.setState({
+            ingredients: array
+        });
+    }
+
+
+
+
+    addIngredient = () =>{
+
+        this.setState({
+            ingredient_index: this.state.ingredient_index+1}, function () {
+            });
+        
+            
+        if (this.state.ingredients){     
+            this.setState({
+                ingredients: [...this.state.ingredients, ["","","kg", this.state.ingredient_index, this.state.ingredient_index]]
+            }, function () {});
+        }else{
+            this.setState({
+                ingredients: [["","","kg", this.state.ingredient_index, this.state.ingredient_index]]
+            }, function () {});
+        }
+    }
+
+    deleteIngredient = (index) => {
+        var array = this.state.ingredients;
+        /* array = array.filter((j => j[4] == index)) */
+        var temp_array = [];
+        array.map(k => 
+            temp_array.push(k[4])
+        );
+
+        var new_array = [];
+
+        for (var i = 0; i < temp_array.length; i++){
+            if (temp_array[i]===index){
+            }else{
+                new_array.push(array[i]);
+            }
+        }
+
+        this.setState({
+            ingredients: new_array
+        })  
+
+    }
+
+    onChangeStepComments(e, i){
+        var array = this.state.steps;
+
+        var temp_array = array;
+        array[i] = e.target.value
+
+        this.setState({
+            steps: array
+        });
+    }
+
+    addStep = () =>{
+
+        this.setState({
+            step_index: this.state.step_index+1}, function () {
+            });
+
+        var step = this.state.steps;
+        step.push("")
+            
+        if (this.state.steps){     
+            this.setState({
+                steps: step
+            }, function () {});
+        }else{
+            this.setState({
+                steps: [""]
+            }, function () {});
+        }
+    }
+
+    deleteStep = () => {
+        var step = this.state.steps;
+        step.pop()
+
+        this.setState({
+            steps: step
+        }, function () {});
     }
 
     onSubmit = async(e) =>{
@@ -108,19 +292,19 @@ export default class AddRecipe extends Component {
     }
 
     render() {
-
+        let {ingredients, steps} = this.state;
         let {referrer} = this.state;
         if (referrer) return <Redirect to={referrer} /> 
         return (
             <div className="add-recipe-container">
                 <button className="recipeClose" onClick={this.closeButton}></button>
                 <form onSubmit={this.onSubmit} className="Recipes" >
-                    <p>To add a recipe, please enter the following details:</p>
+                    <p className='add-recipe-instruction'>To add a recipe, please enter the following details:</p>
                     <label className='recipe-name'>Recipe Name</label>
                     <input type='text' className='recipe-title' onChange={this.onChangeRecipeName} required/>
                     <label className='recipe-description'>Recipe Description</label>
                     <textarea className='recipe-description-title' onChange={this.onChangeRecipeDescription} />
-                    <label className='recipe-img-title'>Upload food image</label>
+                    <label className='recipe-img-title'>Upload food image (REQUIRED)</label>
                     <div className="recipe-img-holder">
                         
                         <label className="recipe-picture-label" htmlFor="file-input">
@@ -130,12 +314,62 @@ export default class AddRecipe extends Component {
                         <input id="file-input" type="file" required  onChange={this.imageHandler} />
                     </div>
                     
-                    <label className='ingredients'>Ingredients</label>
-
-                    <div>
-                        Steps
+                    <label className='ingredients'>Add an Ingredient</label>
+                    <div className='ingredients-container'>
+                        <div className='add-ingredient-box'>
+                            <div className='add-ingredient-icon' src={AddIcon} onClick={() => this.addIngredient()}></div>
+                        
+                            <ul className="ingredient-list"> 
+                                {ingredients ?
+                                    ingredients.map((item, i) => {
+                                       return (
+                                          <li className="ingredient-input" key={item[4]}>
+                                              <div>{item[4]}</div>
+                                              <input className="ingredient-name" type="text" placeholder="Ingredient Name" onChange={(e) => this.onChangeIngredientName()} required />
+                                              <input className="ingredient-quantity" type="text"  placeholder="Quantity" pattern="[0-9]+" title="Only Numbers" onChange={(e) => this.onChangeIngredientQuantity(e, item[4])} required/>
+                                              <select className="ingredient-measurement" onChange={(e) => this.onChangeIngredientMeasurement(e, item[4])}>
+                                                <option value="kg">kg</option>
+                                                <option value="g">g</option>
+                                                <option value="l">l</option>
+                                                <option value="ml">ml</option>
+                                                <option value="teaspoon">teaspoon</option>
+                                                <option value="tablespoon">tablespoon</option>  
+                                              </select>
+                                              <textarea className="ingredient-comments" defaultValue={item[3]} placeholder="Other Details" onChange={(e) => this.onChangeIngredientComments(e, item[4])}></textarea>
+                                              <div className='delete-ingredient-icon' src={AddIcon} onClick={() => this.deleteIngredient(item[4])}></div>
+                                          </li>
+                                       )
+                                    })
+                                    : []
+                                }
+                            </ul>
+                        </div>
                     </div>
 
+                    <label className='steps'>Add a Step</label>
+                    <div className='steps-container'>
+                        <div className='add-steps-box'>
+                            <div className='add-step-icon' src={AddIcon} onClick={() => this.addStep()}></div>
+                        
+                            <ul className="steps-list"> 
+                                {steps ?
+                                    steps.map((item, i) => {
+                                       return (
+                                          <li className="step-input" key={i}>
+                                              <input className="step-number" type="text" value={i+1} disabled />
+                                              <textarea className="step-comments" defaultValue={item} placeholder="Write the next step"  onChange={(e) => this.onChangeStepComments(e, i)} required></textarea>
+                                              {i === steps.length - 1 ?
+                                              <div className='delete-step-icon' src={AddIcon} onClick={() => this.deleteStep(item)} ></div>
+                                              : <div></div>
+                                              }
+                                          </li>
+                                       )
+                                    })
+                                    : []
+                                }
+                            </ul>
+                        </div>
+                    </div>
                     
                     
                     
