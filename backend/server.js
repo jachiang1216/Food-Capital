@@ -13,6 +13,7 @@ const userRoutesLogin = express.Router();
 const userRoutesInfo = express.Router();
 const profileUpdate = express.Router();
 const recipesRoutes = express.Router();
+const recipeRoutes = express.Router();
 
 
 let User = require("./models/user.model");
@@ -41,6 +42,7 @@ connection.once('open', function () {
 
 
 app.use("/recipes", recipesRoutes);
+app.use("/recipe", recipeRoutes);
 app.use("/", userRoutesLogin);
 app.use("/", userRoutes);
 app.use("/", userRoutesInfo);
@@ -194,7 +196,6 @@ recipesRoutes.route('/fetch').get(function(req, res){
 
     Recipe.find({ 'userid': { $all: [ id ] } }).then(result => {
         if (result) {
-            console.log(result)
             res.status(200).json(result);
         } else {
             res.json(result);
@@ -204,6 +205,56 @@ recipesRoutes.route('/fetch').get(function(req, res){
 }) 
 
 
+recipesRoutes.route('/delete').post(function(req, res){
+
+    let id = req.body.recipeid;
+
+    Recipe.deleteOne({'_id':id}).then(deletedrecipe => {
+        res.status(200).json({'recipe':'recipe deleted successfully'});
+    })
+    .catch(err => {
+        res.send('recipe delete failed');
+    });    
+})
+
+recipesRoutes.route('/updatepic/:id').post(upload.single("file"), function(req, res){
+    let id = req.params.id;
+    Recipe.findOne({'_id':id}).then(result => {
+        result.recipepicture = {
+                data: fs.readFileSync(req.file.path),
+                contentType: "image/png"
+        }; 
+        result.save()
+        .then(recipeuser => {
+            res.status(200).json({'recipepic':'recipepic updated successfully'});
+        })
+        .catch(err => {
+            res.send('recipepic update failed');
+        });
+        
+    })
+}) 
+
+recipesRoutes.route('/update').post(function(req, res){
+    let id = req.body.recipeid;
+    
+    Recipe.findOne({'_id':id}).then(result => {
+        
+        result.recipename = req.body.recipename;
+        result.recipedescription = req.body.recipedescription;
+        result.ingredients = req.body.ingredients;
+        result.steps = req.body.steps;
+        
+        result.save()
+        .then(recipeuser => {
+            res.status(200).json({'recipepic':'recipepic updated successfully'});
+        })
+        .catch(err => {
+            res.send('recipepic update failed');
+        });
+        
+    })
+}) 
 
 
 
