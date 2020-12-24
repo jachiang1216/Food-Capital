@@ -238,7 +238,7 @@ export default class AddRecipe extends Component {
 
         var temp_array = array;
         array[i] = e.target.value
-
+        console.log(i)
         this.setState({
             steps: array
         });
@@ -303,7 +303,7 @@ export default class AddRecipe extends Component {
                     <label className='recipe-name'>Recipe Name</label>
                     <input type='text' className='recipe-title' onChange={this.onChangeRecipeName} required/>
                     <label className='recipe-description'>Recipe Description</label>
-                    <textarea className='recipe-description-title' onChange={this.onChangeRecipeDescription} />
+                    <textarea className='recipe-description-title' onChange={this.onChangeRecipeDescription} required/>
                     <label className='recipe-img-title'>Upload food image (REQUIRED)</label>
                     <div className="recipe-img-holder">
                         
@@ -325,17 +325,19 @@ export default class AddRecipe extends Component {
                                        return (
                                           <li className="ingredient-input" key={item[4]}>
                                               <div>{item[4]}</div>
-                                              <input className="ingredient-name" type="text" placeholder="Ingredient Name" onChange={(e) => this.onChangeIngredientName()} required />
-                                              <input className="ingredient-quantity" type="text"  placeholder="Quantity" pattern="[0-9]+" title="Only Numbers" onChange={(e) => this.onChangeIngredientQuantity(e, item[4])} required/>
+                                              <input className="ingredient-name" type="text" maxLength="30" placeholder="Ingredient Name" onChange={(e) => this.onChangeIngredientName(e, item[4])} required />
+                                              <input className="ingredient-quantity" type="text" maxLength="3" placeholder="Quantity" pattern="^\d+(?:\/\d+)?$" title="Only Numbers" onChange={(e) => this.onChangeIngredientQuantity(e, item[4])} required/>
                                               <select className="ingredient-measurement" onChange={(e) => this.onChangeIngredientMeasurement(e, item[4])}>
+                                                <option value=""></option>
                                                 <option value="kg">kg</option>
                                                 <option value="g">g</option>
                                                 <option value="l">l</option>
                                                 <option value="ml">ml</option>
                                                 <option value="teaspoon">teaspoon</option>
-                                                <option value="tablespoon">tablespoon</option>  
+                                                <option value="tablespoon">tablespoon</option> 
+                                                <option value="tablespoon">cups</option>  
                                               </select>
-                                              <textarea className="ingredient-comments" defaultValue={item[3]} placeholder="Other Details" onChange={(e) => this.onChangeIngredientComments(e, item[4])}></textarea>
+                                              <textarea className="ingredient-comments" maxLength="50" defaultValue={item[3]} placeholder="Other Details" onChange={(e) => this.onChangeIngredientComments(e, item[4])}></textarea>
                                               <div className='delete-ingredient-icon' src={AddIcon} onClick={() => this.deleteIngredient(item[4])}></div>
                                           </li>
                                        )
@@ -355,9 +357,10 @@ export default class AddRecipe extends Component {
                                 {steps ?
                                     steps.map((item, i) => {
                                        return (
+                                           
                                           <li className="step-input" key={i}>
                                               <input className="step-number" type="text" value={i+1} disabled />
-                                              <textarea className="step-comments" defaultValue={item} placeholder="Write the next step"  onChange={(e) => this.onChangeStepComments(e, i)} required></textarea>
+                                              <textarea className="step-comments" defaultValue={item} maxLength="100" placeholder="Write the next step"  onChange={(e) => this.onChangeStepComments(e, i)} required></textarea>
                                               {i === steps.length - 1 ?
                                               <div className='delete-step-icon' src={AddIcon} onClick={() => this.deleteStep(item)} ></div>
                                               : <div></div>

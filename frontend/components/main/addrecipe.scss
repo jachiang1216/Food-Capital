@@ -194,7 +194,7 @@
 
 .delete-ingredient-icon {
     position: relative;
-    left: 130px;
+    left: 110px;
     top: 13px;
     width: 0.7px;
     height: 0.7px;
@@ -226,15 +226,6 @@
     position: relative;
 }
 
-.ingredient-header{
-    display: flex;
-    div{     
-        position: relative;
-        left: 160px;
-        margin-right: 150px;
-        color: rgb(196, 33, 33)
-    }
-}
 
 .ingredient-input{
     display: flex;
@@ -265,11 +256,31 @@
 .ingredient-comments{
     position: relative;
     height: 30px;
-    width: 330px;
+    width: 310px;
     margin-top: 10px;
     left: 100px;
+    border: none;
 }
-
+/* width */
+::-webkit-scrollbar {
+    width: 20px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(197, 185, 185); 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(197, 185, 185);
+  }
 
 .steps{
     position: relative;
@@ -363,7 +374,7 @@
 .step-number{
     position: relative;
     height: 30px;
-    width: 12px;
+    width: 24px;
     background-color: rgb(232,229,218);
     margin-top: 10px;
     left: 10px;
@@ -375,4 +386,5 @@
     width: 735px;
     margin-top: 10px;
     left: 30px;
+    border: none;
 }

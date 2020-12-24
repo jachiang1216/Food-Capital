@@ -93,6 +93,7 @@
     opacity: 1;
     transition: opacity 2s;  
     background-color: rgb(204, 193, 177); 
+    
 }
 
 .card-title{
@@ -129,4 +130,35 @@
     top: 10px;
     font-size: 40px;
     font-weight: bold;
+}
+
+.card-delete{
+    position: absolute;
+    z-index: 1;
+    top: 315px;
+    left: 800px;
+    width: 25px;
+    height: 25px;
+}
+
+.delete-dialog{
+    position: relative;
+    left: 900px;
+    top: -100px;
+}
+
+.delete-yes{
+    position:relative;
+    top:15px;
+    left:70px;
+    border-radius: 5px;
+    background-color: rgb(232,229,218);
+}
+
+.delete-no{
+    position:relative;
+    left: 80px;
+    top: 15px;
+    border-radius: 5px;
+    background-color: rgb(232,229,218);
 }

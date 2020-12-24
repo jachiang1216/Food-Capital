@@ -4,7 +4,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./recipes.scss"
 import AddIcon from "./../../../images/Add-Icon.PNG";
 import DefaultPic from "./../../../images/Default-Image.png"
+import DeleteIcon from "./../../../images/Trash-Icon.png"
 import axios from 'axios';
+
 export default class Recipes extends Component {
 
     constructor(props) {
@@ -19,12 +21,14 @@ export default class Recipes extends Component {
             //Add Recipe States
             recipename: "",
             recipedescription: "",
+            recipeid: "",
 
             //Show Recipe States
             recipearray: "",
             index: 0,
-            recipepic: DefaultPic
-
+            recipepic: DefaultPic,
+            
+            showDialog: false 
         }
     }
 
@@ -62,6 +66,10 @@ export default class Recipes extends Component {
             ); 
             this.setState({ recipepic: base64Flag+imageStr}, function () {
             });
+            this.setState({
+                recipeid: this.state.recipearray[this.state.index]._id
+            })
+            
         }
     }
 
@@ -71,8 +79,12 @@ export default class Recipes extends Component {
             this.state.recipearray[this.state.index+1].recipepicture.data.data
         ); 
         this.setState({ recipepic: base64Flag+imageStr}, function(){});
+        this.setState({
+            recipeid: this.state.recipearray[this.state.index+1]._id
+        })
         this.setState({ index: this.state.index+1 }, function () {
         });
+        
     }
 
     prevRecipe = () => {
@@ -82,8 +94,16 @@ export default class Recipes extends Component {
         ); 
         this.setState({ recipepic: base64Flag+imageStr}, function () {
         });
+        this.setState({
+            recipeid: this.state.recipearray[this.state.index-1]._id
+        })
         this.setState({ index: this.state.index-1 }, function () {
         });
+        
+    }
+
+    toggleDelete = (e) => {
+        this.setState({ showDialog: !this.state.showDialog });
     }
 
     gotoRecipe = () => {
@@ -97,6 +117,29 @@ export default class Recipes extends Component {
             referrer: "/addrecipe"
         })
     }
+
+    deleteRecipe = async (yesOrNo) => {
+        
+        if (yesOrNo === "yes"){ 
+            let recipe = {
+                recipeid: this.state.recipeid
+            }
+
+            let id = await axios.post('http://localhost:4000/recipes/delete/', recipe)
+            .then(res => {
+                    return res.data._id;
+                }
+            )
+            alert("Recipe Deleted");
+            this.setState({
+                referrer: "/home"
+            })
+                        
+            
+        }
+        this.setState({ showDialog: !this.state.showDialog });
+      }
+    
     
     
     render() {
@@ -104,7 +147,10 @@ export default class Recipes extends Component {
         const {index, recipearray} = this.state
 
         let {referrer} = this.state;
-        if (referrer) return <Redirect to={referrer} /> 
+        if (referrer) return <Redirect to={{
+            pathname: referrer,
+            state: {index: index}
+        }} /> 
         return (
             <div>
             <div className="recipe-container">
@@ -118,16 +164,22 @@ export default class Recipes extends Component {
                     disabled={index === recipearray.length-1 || recipearray.length === 0} 
                     >Next</button>
                 </div>
+                
+                {recipearray[index] ?
+                <div>
                 <div className="card">
-                    {recipearray[index] ?  
                     <div onClick={() => this.gotoRecipe()}>
                         <div className="card-title" >{recipearray[index].recipename}</div>
                         <img className="card-image" src={this.state.recipepic}/>
                         <div className="card-rating-title"> Rating</div>
                         <div className="card-rating">/5</div>
                     </div> 
-                    : <div className="no-recipe-array">You have no Recipes. Add some! :)</div>}
                 </div>
+                
+                <img className="card-delete" title="Delete Recipe" src={DeleteIcon} onClick={() => this.toggleDelete()}></img>
+                </div>
+                : <div className="no-recipe-array">{/* You have no Recipes. Add some! :) */}</div>}
+                
                 <div className="prev-button">
                 <button 
                     onClick={() => this.prevRecipe()}
@@ -137,10 +189,30 @@ export default class Recipes extends Component {
                 <div className="favourite-recipes"><h4>Favourite Recipes</h4></div>
             </div>
 
+            {this.state.showDialog ? (
+                <ConfirmDelete callback={this.deleteRecipe.bind(this)} />
+            ) : null}
+
             
             </div>
         )
     }
 }
+
+class ConfirmDelete extends React.Component {
+    constructor(props) {
+      super(props);
+    }
+  
+    render() {
+      return (
+        <div className="delete-dialog">
+          <div>Are you sure you want to delete?</div>
+          <button className="delete-yes"onClick={() => this.props.callback("yes")}>Yes</button>
+          <button className="delete-no" onClick={() => this.props.callback("no")}>No</button>
+        </div>
+      );
+    }
+  }
 
 export {Recipes}

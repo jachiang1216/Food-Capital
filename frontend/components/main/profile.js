@@ -20,6 +20,8 @@ export default class Profile extends Component {
         this.state = {
           id: this.props.id,
           profilePicture: "",
+          picdata: "",
+          tempPicture: "",
           editMode: false,
           username: "",
           fullname: "",
@@ -59,7 +61,11 @@ export default class Profile extends Component {
                       email: res.data.email,
                       location: res.data.location,
                       about: res.data.about
-                  })
+                  }, function () {});
+
+                  this.setState({
+                    tempPicture: this.state.profilePicture
+                  }, function () {});
                 }
             })
         }catch(err){
@@ -81,6 +87,7 @@ export default class Profile extends Component {
     
     imageHandler = (e) => {
       const reader = new FileReader();
+
       reader.onload = () => {
         if (reader.readyState === 2){
           this.setState({profilePicture: reader.result})
@@ -92,9 +99,10 @@ export default class Profile extends Component {
       const data = new FormData();
       data.append("file", e.target.files[0]);
       data.append("_id", this.state.id);
-      axios.post('http://localhost:4000/profile/upload/'+this.props.id, data).then(res =>{
-        console.log(res.statusText);
-      });
+      
+      this.setState({
+        picdata: data
+      })
     }
 
     toggleEdit = () => {
@@ -147,6 +155,9 @@ export default class Profile extends Component {
         about: this.state.about
       }
       
+      axios.post('http://localhost:4000/profile/upload/'+this.props.id, this.state.picdata).then(res =>{
+        console.log(res.statusText);
+      });
 
       axios.post('http://localhost:4000/profile/add/'+this.props.id, profile)
             .then(res => console.log(res.data));
@@ -160,6 +171,7 @@ export default class Profile extends Component {
     closeButton=()=>{
       
       this.setState({
+        profilePicture: this.state.tempPicture,
         editMode: false
       })
     }
@@ -203,7 +215,7 @@ export default class Profile extends Component {
               </div>
               <div className="about-section">
                 <div className="about">About Me:</div>
-                <textarea className={editMode ? "edit-about-text" : "about-text"} placeholder="Write a paragraph about yourself" defaultValue={this.state.about} onChange={this.onChangeAbout} disabled={!this.state.editMode}></textarea>
+                <textarea className={editMode ? "edit-about-text" : "about-text"} placeholder="Write a paragraph about yourself" defaultValue={this.state.about} onChange={this.onChangeAbout} disabled={!this.state.editMode}/>
               </div>
               <input type='submit'  value='Save Changes' className={editMode ? "profile-submit" : "no-profile-submit"} />
               </form>
