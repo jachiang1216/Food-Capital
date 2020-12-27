@@ -324,7 +324,6 @@ export default class AddRecipe extends Component {
                                     ingredients.map((item, i) => {
                                        return (
                                           <li className="ingredient-input" key={item[4]}>
-                                              <div>{item[4]}</div>
                                               <input className="ingredient-name" type="text" maxLength="30" placeholder="Ingredient Name" onChange={(e) => this.onChangeIngredientName(e, item[4])} required />
                                               <input className="ingredient-quantity" type="text" maxLength="3" placeholder="Quantity" pattern="^\d+(?:\/\d+)?$" title="Only Numbers" onChange={(e) => this.onChangeIngredientQuantity(e, item[4])} required/>
                                               <select className="ingredient-measurement" onChange={(e) => this.onChangeIngredientMeasurement(e, item[4])}>

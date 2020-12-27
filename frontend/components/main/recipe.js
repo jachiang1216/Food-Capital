@@ -395,7 +395,6 @@ export default class Recipe extends Component {
                                     return (
         
                                         <li className="show-ingredient-input" key={i}>
-                                            <div>{item[4]}</div>
                                             <input className={this.state.editrecipe ? "edit-show-ingredient-name" : "show-ingredient-name"} maxLength="30" type="text" defaultValue={item[0]} disabled={!this.state.editrecipe} placeholder="Ingredient Name" onChange={(e) => this.onChangeIngredientName(e, item[4])} required/>
                                             {this.state.editrecipe ? 
                                                 <div>

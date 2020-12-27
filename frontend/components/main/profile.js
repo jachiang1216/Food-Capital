@@ -20,7 +20,7 @@ export default class Profile extends Component {
         this.state = {
           id: this.props.id,
           profilePicture: "",
-          picdata: "",
+          picdata: null,
           tempPicture: "",
           editMode: false,
           username: "",
@@ -154,10 +154,11 @@ export default class Profile extends Component {
         location: this.state.location,
         about: this.state.about
       }
-      
-      axios.post('http://localhost:4000/profile/upload/'+this.props.id, this.state.picdata).then(res =>{
-        console.log(res.statusText);
-      });
+      if (this.state.picdata){
+        axios.post('http://localhost:4000/profile/upload/'+this.props.id, this.state.picdata).then(res =>{
+          console.log(res.statusText);
+        });
+      } 
 
       axios.post('http://localhost:4000/profile/add/'+this.props.id, profile)
             .then(res => console.log(res.data));

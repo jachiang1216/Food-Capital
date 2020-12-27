@@ -69,10 +69,11 @@
 .show-recipe-name{      
     position: relative;
     top: 20px;
-    left: 70px;
-    width: 1000px;
+    left: 0px;
+    width: 850px;
     text-align: center;
     font-weight: bold;
+    border: solid;
     font-size: 30px;
     color: rgb(105, 82, 56);
     background-color: rgb(232,229,218);
@@ -231,8 +232,8 @@
 .edit-show-recipe-name{      
     position: relative;
     top: 20px;
-    left: 70px;
-    width: 1000px;
+    left: 0px;
+    width: 850px;
     text-align: center;
     font-weight: bold;
     font-size: 30px;
