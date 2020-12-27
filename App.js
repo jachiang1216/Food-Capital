@@ -8,7 +8,10 @@ import Home from "./frontend/components/main/home";
 import Profile from "./frontend/components/main/profile";
 import "./App.scss"
 import Logo from "./images/Food_Logo.PNG"
-import axios from 'axios';
+import Recipes from './frontend/components/main/recipes';
+import Recipe from './frontend/components/main/recipe';
+import AddRecipe from './frontend/components/main/addrecipe';
+import OtherRecipe from './frontend/components/main/otherrecipe';
 
 
 export default class App extends Component {
@@ -43,7 +46,7 @@ export default class App extends Component {
             <div className="container">
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <ul className="navbar-nav mr-auto">
-                  <img className="logo" src={Logo}/>
+                  <img className="logo" src={Logo} alt="Logo"/>
                   <li>
                     <input className="search" type="text" placeholder="Search for Recipes"></input>
                   </li>
@@ -75,7 +78,10 @@ export default class App extends Component {
             <Route exact path="/forgotpassword" component={ForgotPassword}/>
             <Route exact path="/home" component={() => <Home id={this.state.id} username={this.state.username} />}/>
             <Route exact path="/profile" component={() => <Profile id={this.state.id} username={this.state.username} />}/>
-
+            <Route exact path="/recipes" component={() => <Recipes id={this.state.id} />}/>
+            <Route exact path="/recipe" component={(props) => <Recipe id={this.state.id} {...props} />}/>
+            <Route exact path="/addrecipe" component={() => <AddRecipe id={this.state.id} />}/>
+            <Route exact path="/otherrecipe" component={(props) => <OtherRecipe id={this.state.id} {...props} />}/>
         </Router>
     );
   }
